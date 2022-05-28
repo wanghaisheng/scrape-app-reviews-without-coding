@@ -120,25 +120,99 @@ def get_longtail_keywords_from_recommend(keyword_inputfilename,keyword_outputfil
         
         df = pd.DataFrame({"domain": domains, "query": to_be_saved_queries, "keywords": all_autosuggestions})
         df.to_csv(keyword_outputfilename,  mode='a', index=False)
+async def get_longtail_keywords_from_one(query,outputfilename):
+    # root.csv will look like below
+    # keywords (header)
+    # jewelry
+    # kids school
+    # search engine optimization
 
-for root, dirs, files in os.walk('.'):
-    for name in files:
-        if name.endswith('-lv0.csv'):
-            category=name.split('-')[0]
-            print('========',category)
-    # 		category='jewelry'
-            category_root_keyword=category+'-lv0.csv'
-            category_level_1_keyword=category+'-lv1.csv'
-            category_level_2_keyword=category+'-lv2.csv'
-            category_level_3_keyword=category+'-lv3.csv'
-            category_level_4_keyword=category+'-lv4.csv'
-            category_level_5_keyword=category+'-lv5.csv'
 
-            get_longtail_keywords_from_recommend(category_root_keyword,category_level_1_keyword)
-            get_longtail_keywords_from_recommend(category_level_1_keyword,category_level_2_keyword)
-            get_longtail_keywords_from_recommend(category_level_2_keyword,category_level_3_keyword)
-            get_longtail_keywords_from_recommend(category_level_3_keyword,category_level_4_keyword)
-            get_longtail_keywords_from_recommend(category_level_4_keyword,category_level_5_keyword)
+    to_be_saved_queries = []
+    all_autosuggestions = []
+    domains = []
+    for (domain, url) in urls.items():
+
+        print('process',domain,'keyword',query)
+        # add the query to the url
+        remote_url = url + query
+        # print(f"Remote url : {remote_url}")
+        headers = {'User-Agent': 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0'}
+
+        response=''
+        if url_ok('http://www.google.com'):
+            # print('network is fine,there is no need for proxy ')
+            response = requests.get(remote_url).json()
+
+        else:
+            # print('google can not be access ')
+
+            # print('we need for proxy ',proxies)            
+            response = requests.get(remote_url,proxies=proxies).json()
+        # print(response)
+        auto_suggest=[]
+        if domain=='etsy':
+            for item in response['results']:
+                if "</span>" in item['query']:
+                    pass
+                else:
+                    if query==item['query']:
+                        pass
+                    else:                        
+                        auto_suggest.append(item['query'])
+        elif domain in ['google','youtube','amazon']:
+            if query in response[1]:
+                response[1].remove(query)
+            auto_suggest = response[1]
+            # print(response[1])
+        elif domain =='tiktok':
+            # print(response)
+            for item in response['sug_list']:
+                # print(item['content'])
+                if query==item['content']:
+                    pass
+                else:
+                    auto_suggest.append(item['content'])     
+        elif domain=='instagram':
+            for item in response['hashtags']:
+                k = ' '.join(wordninja.split(item['hashtag']['name']))
+                if query==k:
+                    pass
+                else:                    
+                    auto_suggest.append(k)       
+                item['hashtag']['media_count']     
+        # print(auto_suggest)
+        auto_suggest = [ii for n,ii in enumerate(auto_suggest) if ii not in auto_suggest[:n]]            
+        for suggestion in auto_suggest:
+            to_be_saved_queries.append(query)
+            all_autosuggestions.append(suggestion)
+            domains.append(domain)
+        time.sleep(random.randint(3, 10))
+
+    
+    df = pd.DataFrame({"domain": domains, "query": to_be_saved_queries, "keywords": all_autosuggestions})
+    df.to_csv(outputfilename,  mode='a', index=False)
+    return all_autosuggestions
+if __name__ == "__main__":
+        
+    for root, dirs, files in os.walk('.'):
+        for name in files:
+            if name.endswith('-lv0.csv'):
+                category=name.split('-')[0]
+                print('========',category)
+        # 		category='jewelry'
+                category_root_keyword=category+'-lv0.csv'
+                category_level_1_keyword=category+'-lv1.csv'
+                category_level_2_keyword=category+'-lv2.csv'
+                category_level_3_keyword=category+'-lv3.csv'
+                category_level_4_keyword=category+'-lv4.csv'
+                category_level_5_keyword=category+'-lv5.csv'
+
+                get_longtail_keywords_from_recommend(category_root_keyword,category_level_1_keyword)
+                get_longtail_keywords_from_recommend(category_level_1_keyword,category_level_2_keyword)
+                get_longtail_keywords_from_recommend(category_level_2_keyword,category_level_3_keyword)
+                get_longtail_keywords_from_recommend(category_level_3_keyword,category_level_4_keyword)
+                get_longtail_keywords_from_recommend(category_level_4_keyword,category_level_5_keyword)
 
 
 

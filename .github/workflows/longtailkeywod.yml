@@ -14,9 +14,9 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install all necessary packages
-        run: pip install  requests pandas wordninja sendgrid urllib3 chardet
+        run: pip install  requests pandas wordninja aiohttp urllib3 chardet aiofiles
       - name: Run the scraping script
-        run: python3    keywordsExpand.py 
+        run: python3    speedy.py 
       - name: Commit and push and email if content changed
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}

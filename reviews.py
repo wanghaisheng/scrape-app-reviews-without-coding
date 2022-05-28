@@ -36,10 +36,12 @@ def app_store_scraper(app_name):
 #     app.review()
 
     for review in app.reviews:
-        score = review['rating']
-        username = review['userName']
-        review = review['review']
-        applerows.append(review)
+        data={}
+        data['score']= review['rating']
+        data['userName']= review['userName']
+        data['review']= review['review']
+        
+        applerows.append(data)
     df = pd.DataFrame(applerows)
     df.to_csv("./"+app_name+"-apple-app-review.csv", index=False)
 
