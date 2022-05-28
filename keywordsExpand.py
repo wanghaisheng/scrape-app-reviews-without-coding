@@ -120,7 +120,7 @@ def get_longtail_keywords_from_recommend(keyword_inputfilename,keyword_outputfil
         
         df = pd.DataFrame({"domain": domains, "query": to_be_saved_queries, "keywords": all_autosuggestions})
         df.to_csv(keyword_outputfilename,  mode='a', index=False)
-async def get_longtail_keywords_from_one(query,outputfilename):
+async def get_longtail_keywords_from_one(query):
     # root.csv will look like below
     # keywords (header)
     # jewelry
