@@ -16,7 +16,7 @@ jobs:
       - name: Install all necessary packages
         run: pip install  google_play_scraper app_store_scraper pandas 
       - name: Run the scraping script
-        run: python capcut-reviews.py
+        run: python reviews.py
       - name: Commit and push and email if content changed
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
