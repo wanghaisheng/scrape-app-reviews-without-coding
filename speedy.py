@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     asyncio.run(bulk_crawl_and_write(file=outpath, keywords=keywords))
 
-    with open(here.joinpath("l3-keywords.txt")) as infile:
+    with open(here.joinpath("lv3-keywords.txt")) as infile:
         keywords = set(map(str.strip, infile))
 
     outpath = here.joinpath("lv4-keywords.txt")
