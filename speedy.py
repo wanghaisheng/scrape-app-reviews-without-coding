@@ -14,7 +14,8 @@ from typing import IO
 import aiofiles
 import aiohttp
 from aiohttp import ClientSession
-from .kewordsExpand import get_longtail_keywords_from_one
+from 
+from .keywordsExpand import get_longtail_keywords_from_one
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)s:%(name)s: %(message)s",
