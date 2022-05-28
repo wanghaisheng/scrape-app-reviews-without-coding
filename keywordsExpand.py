@@ -190,8 +190,8 @@ async def get_longtail_keywords_from_one(query,outputfilename):
         time.sleep(random.randint(3, 10))
 
     
-    df = pd.DataFrame({"domain": domains, "query": to_be_saved_queries, "keywords": all_autosuggestions})
-    df.to_csv(outputfilename,  mode='a', index=False)
+    # df = pd.DataFrame({"domain": domains, "query": to_be_saved_queries, "keywords": all_autosuggestions})
+    # df.to_csv(outputfilename,  mode='a', index=False)
     return all_autosuggestions
 if __name__ == "__main__":
         
