@@ -26,7 +26,7 @@ def play_store_scraper(package):
     
 
     df = pd.DataFrame(googlerows)
-    df.to_csv(os.path.abspath('.')+os.sep+"data/"+package+"-google-app-review.csv", index=False)
+    df.to_csv("./"+package+"-google-app-review.csv", index=False)
 
 applerows = []
 
@@ -41,7 +41,7 @@ def app_store_scraper(app_name):
         review = review['review']
         applerows.append(review)
     df = pd.DataFrame(applerows)
-    df.to_csv(os.path.abspath('.')+os.sep+"data/"+app_name+"-apple-app-review.csv", index=False)
+    df.to_csv("./"+app_name+"-apple-app-review.csv", index=False)
 
 play_store_scraper(package_name)
 app_store_scraper('capcut-video-editor')
