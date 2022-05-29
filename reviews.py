@@ -54,7 +54,7 @@ def play_store_scraper(package):
 
 applerows = []
 
-def app_store_scraper(app_name,country="us"):
+def app_store_scraper(app_name,country="us",lang='en'):
     app = AppStore(country=country,app_name=app_name)
     app.review(sleep = random.randint(3,6))
 #     app.review()
