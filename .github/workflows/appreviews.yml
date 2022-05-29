@@ -1,8 +1,17 @@
 name: capcut-appstorereviews
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "00 12 * * *"
+    inputs:
+      google_app_package_url:
+        description: 'google playstore url like https://play.google.com/store/apps/details?id=com.twitter.android'
+        type: enviroment
+        required: False
+      apple_app_package_url:
+        description: 'apple playstore url like https://apps.apple.com/us/app/capcut-video-editor/id1500855883'
+        type: enviroment
+        required: False    
+  # schedule:
+    # - cron: "00 12 * * *"
 jobs:
   scrape_and_email:
     runs-on: ubuntu-latest
@@ -17,6 +26,9 @@ jobs:
         run: pip install  google_play_scraper app_store_scraper pandas 
       - name: Run the scraping script
         run: python reviews.py
+        env:
+          apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
+          google_app_package_url: ${{ github.event.inputs.google_app_package_url }}          
       - name: Commit and push and email if content changed
         run: |-
           git config user.name "Automated"
