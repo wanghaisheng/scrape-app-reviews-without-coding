@@ -63,7 +63,7 @@ def app_store_scraper(app_name,country="us"):
         data={}
         data['score']= review['rating']
         data['userName']= review['userName']
-        data['review']= review['review']
+        data['review']= review['review'].replace('\r',' ').replace('\n',' ')
         
         applerows.append(data)
     df = pd.DataFrame(applerows)
