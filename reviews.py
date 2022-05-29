@@ -68,7 +68,14 @@ def app_store_scraper(app_name,country="us"):
         applerows.append(data)
     df = pd.DataFrame(applerows)
     df.to_csv("./"+app_name+'-'+lang+'-'+country+'-'+"apple-app-review.csv", index=False)
+def app_reviews(country_code,app_id):
+
+    return "https://itunes.apple.com/%s/rss/customerreviews/id=%s/sortBy=mostRecent/json" % (country_code, app_id)    
+# https://itunes.apple.com/us/rss/customerreviews/id=1500855883/sortBy=mostRecent/json    
 if not os.getenv('google_app_package_url')=='':
     play_store_scraper(google_app_package_name)
 if not os.getenv('apple_app_package_name')=='':
     app_store_scraper(apple_app_package_name)
+
+#huawei  xiaomi samsung
+
