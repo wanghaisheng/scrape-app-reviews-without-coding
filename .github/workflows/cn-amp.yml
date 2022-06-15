@@ -3,18 +3,18 @@ name: cn-apple-appstorereviews
 on:
   workflow_dispatch:
     inputs:
-      google_app_package_url:
+      appName:
         description: 'google playstore url like https://play.google.com/store/apps/details?id=com.twitter.android'
         type: enviroment
-        required: False
+        required: True
       apple_app_package_url:
         description: 'apple playstore url like https://apps.apple.com/us/app/capcut-video-editor/id1500855883'
         type: enviroment
         required: False    
-      country:
+      appid:
         description: 'country like "us","cn"'
         type: enviroment
-        required: False    
+        required: True    
 # schedule:
     # - cron: "00 12 * * *"
 jobs:
@@ -33,6 +33,9 @@ jobs:
         run: python cn-apple.py
         env:
           apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
+          appName: ${{ github.event.inputs.apple_app_package_url }}          
+          appid: ${{ github.event.inputs.apple_app_package_url }}          
+          
       - name: Commit and push and email if content changed
         run: |-
           git config user.name "Automated"
