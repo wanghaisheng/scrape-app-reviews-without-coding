@@ -67,7 +67,9 @@ try:
         if not len(appName) > 0:
             print('not support package,', apple_app_package_url, appName)
         print('====', appName, appid)
-
+except BaseException:
+    apple_app_package_name = 'capcut-video-editor'
+def main(appName,appid):
         app = appName
         id = appid.replace('id', '')
         print('====', app, id)
@@ -85,6 +87,4 @@ try:
 
         wb.save(app + ".xlsx")  # 默认保存在当前目录
         print("Done!")
-except BaseException:
-    apple_app_package_name = 'capcut-video-editor'
-
+main(appName,appid)
