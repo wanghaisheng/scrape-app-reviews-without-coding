@@ -62,8 +62,11 @@ try:
     if 'https://apps.apple.com' in apple_app_package_url:
         if '?' in apple_app_package_url:
             apple_app_package_url = apple_app_package_url.split('?')[0]
+        print('apple_app_package_url', apple_app_package_url, appid)
 
         appName = apple_app_package_url.split('/')[-2]
+        print('apple_app_package_url', apple_app_package_url.split('/'), appid)
+        
         appid = apple_app_package_url.split('/')[-1]
         if not len(appName) > 0:
             print('not support package,', apple_app_package_url, appName)
