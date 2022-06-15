@@ -5,7 +5,7 @@ import requests
 import json
 import time
 import openpyxl
-
+import os
 
 def SearchAppId(app):
     url = "http://itunes.apple.com/search?term=" + app + "&entity=software"
