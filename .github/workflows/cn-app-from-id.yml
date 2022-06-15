@@ -28,9 +28,8 @@ jobs:
       - name: Run the scraping script
         run: python cn-app-id-name.py
         env:
-          apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
-          appName: ${{ github.event.inputs.apple_app_package_url }}          
-          appid: ${{ github.event.inputs.apple_app_package_url }}          
+          appName: ${{ github.event.inputs.appName }}          
+          appid: ${{ github.event.inputs.appid }}          
           
       - name: Commit and push and email if content changed
         run: |-
