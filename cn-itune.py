@@ -50,33 +50,10 @@ def SaveContent(id, wb, ws):
         # 每一页爬取延迟2秒，以防过于频繁
         time.sleep(2)
 
-
-appName=''
-appid=''
-try:
-    # https://apps.apple.com/us/app/indycar/id606905722
-    #     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
-    # https://apps.apple.com/cn/app/妙健康-健康管理平台/id841386224?l=ru&see-all=reviews
-    # https://apps.apple.com/cn/app/%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/id841386224?l=ru&see-all=reviews
-    apple_app_package_url = os.getenv('apple_app_package_url').strip()
-    if 'https://apps.apple.com' in apple_app_package_url:
-        if '?' in apple_app_package_url:
-            apple_app_package_url = apple_app_package_url.split('?')[0]
-        print('apple_app_package_url', apple_app_package_url, appid)
-
-        appName = apple_app_package_url.split('/')[-2]
-        print('apple_app_package_url', apple_app_package_url.split('/'), appid)
-        
-        appid = apple_app_package_url.split('/')[-1]
-        if not len(appName) > 0:
-            print('not support package,', apple_app_package_url, appName)
-        print('==1==', appName, appid)
-except BaseException:
-    apple_app_package_name = 'capcut-video-editor'
 def main(appName,appid):
         app = appName
         id = appid.replace('id', '')
-        print('==2==', app, id)
+        print('====', app, id)
         SearchAppId(app)
 
         # Workbook init
@@ -91,4 +68,25 @@ def main(appName,appid):
 
         wb.save(app + ".xlsx")  # 默认保存在当前目录
         print("Done!")
-main(appName,appid)
+
+
+appName=''
+appid=''
+try:
+    # https://apps.apple.com/us/app/indycar/id606905722
+    #     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
+    # https://apps.apple.com/cn/app/妙健康-健康管理平台/id841386224?l=ru&see-all=reviews
+    # https://apps.apple.com/cn/app/%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/id841386224?l=ru&see-all=reviews
+    apple_app_package_url = os.getenv('apple_app_package_url').strip()
+    if 'https://apps.apple.com' in apple_app_package_url:
+        if '?' in apple_app_package_url:
+            apple_app_package_url = apple_app_package_url.split('?')[0]
+
+        appName = apple_app_package_url.split('/')[-2]
+        appid = apple_app_package_url.split('/')[-1]
+        if not len(appName) > 0:
+            print('not support package,', apple_app_package_url, appName)
+        print('====', appName, appid)
+        main(appName,appid)
+except BaseException:
+    apple_app_package_name = 'capcut-video-editor'
