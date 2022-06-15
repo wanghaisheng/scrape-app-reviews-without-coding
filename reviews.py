@@ -6,6 +6,11 @@ from pathlib import Path
 import pandas as pd
 import random
 import os
+
+try:
+    from urllib import unquote
+except ImportError:
+    from urllib.parse import unquote
 try:
     google_app_package_url = os.getenv('google_app_package_url').strip()
     if 'https://play.google.com/store/apps/details?id=' in google_app_package_url:
@@ -20,6 +25,7 @@ try:
 # https://apps.apple.com/us/app/indycar/id606905722
 #     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
 #https://apps.apple.com/cn/app/妙健康-健康管理平台/id841386224?l=ru&see-all=reviews
+#https://apps.apple.com/cn/app/%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/id841386224?l=ru&see-all=reviews
     apple_app_package_url = os.getenv('apple_app_package_url').strip()
     if 'https://apps.apple.com' in apple_app_package_url:
         if '?' in apple_app_package_url:
@@ -63,7 +69,7 @@ applerows = []
 
 def app_store_scraper(app_name,country=country):
     if country=='cn':
-        app_name=app_name.encode('utf-8')
+        app_name=unquote(app_name)
     app = AppStore(country=country,app_name=app_name)
     app.review(sleep = random.randint(3,6))
 
