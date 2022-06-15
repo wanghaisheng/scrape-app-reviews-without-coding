@@ -67,6 +67,7 @@ def main():
             appid = apple_app_package_url.split('/')[-1]
             if not len(appName) > 0:
                 print('not support package,', apple_app_package_url, appName)
+            print('====', appName, appid)
 
             app = appName
             id = appid.replace('id', '')
