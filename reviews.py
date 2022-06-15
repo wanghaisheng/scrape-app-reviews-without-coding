@@ -34,6 +34,7 @@ try:
     country=os.getenv('country')
 except:
     country=os.getenv('apple_app_package_url').strip().replace("https://apps.apple.com/").split('/')[0]
+    print('country',country)
     if country is None or country =="":
         country='us'
 
