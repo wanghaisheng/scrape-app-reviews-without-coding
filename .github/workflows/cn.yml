@@ -1,5 +1,5 @@
 
-name: appstorereviews
+name: cn-appstorereviews
 on:
   workflow_dispatch:
     inputs:
