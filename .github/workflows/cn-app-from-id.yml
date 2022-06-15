@@ -7,10 +7,6 @@ on:
         description: 'google playstore url like https://play.google.com/store/apps/details?id=com.twitter.android'
         type: enviroment
         required: True
-      apple_app_package_url:
-        description: 'apple playstore url like https://apps.apple.com/us/app/capcut-video-editor/id1500855883'
-        type: enviroment
-        required: False    
       appid:
         description: 'country like "us","cn"'
         type: enviroment
