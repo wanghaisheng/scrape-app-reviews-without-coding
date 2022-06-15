@@ -1,5 +1,5 @@
 
-name: cn-apple-appstorereviews-from-url
+name: cn-appstorereviews-from-url
 on:
   workflow_dispatch:
     inputs:
