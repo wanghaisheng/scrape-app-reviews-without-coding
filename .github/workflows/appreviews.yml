@@ -33,6 +33,7 @@ jobs:
         env:
           apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
           google_app_package_url: ${{ github.event.inputs.google_app_package_url }}          
+          country: ${{ github.event.inputs.country }}          
       - name: Commit and push and email if content changed
         run: |-
           git config user.name "Automated"
