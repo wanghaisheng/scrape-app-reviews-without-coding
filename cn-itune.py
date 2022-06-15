@@ -70,13 +70,13 @@ try:
         appid = apple_app_package_url.split('/')[-1]
         if not len(appName) > 0:
             print('not support package,', apple_app_package_url, appName)
-        print('====', appName, appid)
+        print('==1==', appName, appid)
 except BaseException:
     apple_app_package_name = 'capcut-video-editor'
 def main(appName,appid):
         app = appName
         id = appid.replace('id', '')
-        print('====', app, id)
+        print('==2==', app, id)
         SearchAppId(app)
 
         # Workbook init
