@@ -72,21 +72,18 @@ def main(appName,appid):
 
 appName=''
 appid=''
-try:
-    # https://apps.apple.com/us/app/indycar/id606905722
-    #     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
-    # https://apps.apple.com/cn/app/妙健康-健康管理平台/id841386224?l=ru&see-all=reviews
-    # https://apps.apple.com/cn/app/%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/id841386224?l=ru&see-all=reviews
-    apple_app_package_url = os.getenv('apple_app_package_url').strip()
-    if 'https://apps.apple.com' in apple_app_package_url:
-        if '?' in apple_app_package_url:
-            apple_app_package_url = apple_app_package_url.split('?')[0]
+# https://apps.apple.com/us/app/indycar/id606905722
+#     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
+# https://apps.apple.com/cn/app/妙健康-健康管理平台/id841386224?l=ru&see-all=reviews
+# https://apps.apple.com/cn/app/%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/id841386224?l=ru&see-all=reviews
+apple_app_package_url = os.getenv('apple_app_package_url').strip()
+if 'https://apps.apple.com' in apple_app_package_url:
+    if '?' in apple_app_package_url:
+        apple_app_package_url = apple_app_package_url.split('?')[0]
 
-        appName = apple_app_package_url.split('/')[-2]
-        appid = apple_app_package_url.split('/')[-1]
-        if not len(appName) > 0:
-            print('not support package,', apple_app_package_url, appName)
-        print('====', appName, appid)
-        main(appName,appid)
-except BaseException:
-    apple_app_package_name = 'capcut-video-editor'
+    appName = apple_app_package_url.split('/')[-2]
+    appid = apple_app_package_url.split('/')[-1]
+    if not len(appName) > 0:
+        print('not support package,', apple_app_package_url, appName)
+    print('====', appName, appid)
+    main(appName,appid)
