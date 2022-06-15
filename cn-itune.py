@@ -51,7 +51,8 @@ def SaveContent(id, wb, ws):
         time.sleep(2)
 
 
-
+appName=''
+appid=''
 try:
     # https://apps.apple.com/us/app/indycar/id606905722
     #     https://apps.apple.com/us/app/capcut-video-editor/id1500855883
