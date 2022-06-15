@@ -1,14 +1,14 @@
 
-name: cn-apple-appstorereviews-from-id/name
+name: cn-apple-from-id/name
 on:
   workflow_dispatch:
     inputs:
       appName:
-        description: 'google playstore url like https://play.google.com/store/apps/details?id=com.twitter.android'
+        description: 'app name'
         type: enviroment
         required: True
       appid:
-        description: 'country like "us","cn"'
+        description: 'app id '
         type: enviroment
         required: True    
 # schedule:
