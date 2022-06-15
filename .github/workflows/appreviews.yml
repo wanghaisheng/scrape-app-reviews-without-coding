@@ -1,4 +1,4 @@
-name: capcut-appstorereviews
+name: appstorereviews
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +10,11 @@ on:
         description: 'apple playstore url like https://apps.apple.com/us/app/capcut-video-editor/id1500855883'
         type: enviroment
         required: False    
-  # schedule:
+      country:
+        description: 'country like "us","cn"'
+        type: enviroment
+        required: False    
+# schedule:
     # - cron: "00 12 * * *"
 jobs:
   scrape_and_email:
