@@ -67,15 +67,13 @@ def play_store_scraper(package):
 
 applerows = []
 
-def app_store_scraper(app_name,country=country):
+def app_store_scraper(app_name,country=country,lang='us'):
     if country=='cn':
         #https://github.com/cowboy-bebug/app-store-scraper/issues/34
-        app_name=unquote(app_name)
-        print('url encode app name',app_name)
-        print('url encode app name',app_name.encode("utf-8").decode("latin1"))
-        app_name='%E5%A6%99%E5%81%A5%E5%BA%B7-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0'
-        
-    app = AppStore(country=country,app_name=app_name)
+        print('url encode app name',urllib.parse.urlencode(app_name))
+        print('url encode app name',app_name.encode("utf-8"))
+        lang='zh-Hans-CN'
+    app = AppStore(country=country,app_name=app_name,lang=lang)
     app.review(sleep = random.randint(3,6))
 
     for review in app.reviews:
