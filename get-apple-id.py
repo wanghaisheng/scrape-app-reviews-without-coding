@@ -2,7 +2,6 @@
 import requests
 import json
 import time
-import openpyxl
 import os
 
 def SearchAppId(app):
