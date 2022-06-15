@@ -28,9 +28,9 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install all necessary packages
-        run: pip install  google_play_scraper app_store_scraper pandas xlsxwriter
+        run: pip install  requests openpyxl pandas xlsxwriter
       - name: Run the scraping script
-        run: python itunes.py
+        run: python cn-itune.py
         env:
           apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
       - name: Commit and push and email if content changed
