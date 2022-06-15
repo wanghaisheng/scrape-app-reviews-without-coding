@@ -68,8 +68,8 @@ def main():
 
             app = appName
             id = appid.replace('id','')
-	        print('====',app,id)
-            # 	SearchAppId(app)
+	    print('====',app,id)
+            SearchAppId(appName)
 
             # Workbook init
             wb = openpyxl.Workbook()
