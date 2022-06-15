@@ -1,20 +1,12 @@
 
-name: cn-appstorereviews
+name: search appid from app name
 on:
   workflow_dispatch:
     inputs:
-      google_app_package_url:
-        description: 'google playstore url like https://play.google.com/store/apps/details?id=com.twitter.android'
+      appName:
+        description: 'appName like "kingdom","bible"'
         type: enviroment
-        required: False
-      apple_app_package_url:
-        description: 'apple playstore url like https://apps.apple.com/us/app/capcut-video-editor/id1500855883'
-        type: enviroment
-        required: False    
-      country:
-        description: 'country like "us","cn"'
-        type: enviroment
-        required: False    
+        required: True    
 # schedule:
     # - cron: "00 12 * * *"
 jobs:
@@ -28,11 +20,11 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install all necessary packages
-        run: pip install  requests openpyxl pandas xlsxwriter
+        run: pip install  requests  
       - name: Run the scraping script
-        run: python cn-itune.py
+        run: python get-apple-id.py
         env:
-          apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
+          appName: ${{ github.event.inputs.appName }}          
       - name: Commit and push and email if content changed
         run: |-
           git config user.name "Automated"
