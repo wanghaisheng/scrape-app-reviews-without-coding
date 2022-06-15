@@ -65,12 +65,11 @@ def main():
             appid=apple_app_package_url.split('/')[-1]
             if not len(appName)>0:
                 print('not support package,',apple_app_package_url,appName)        
-    except:
-        apple_app_package_name='capcut-video-editor'
-	app = appName
-  id = appid
 
-# 	SearchAppId(app)
+	app = appName
+	id = appid
+
+	# 	SearchAppId(app)
 
 	# Workbook init
 	wb = openpyxl.Workbook()
@@ -84,7 +83,8 @@ def main():
 
 	wb.save(app + ".xlsx") # 默认保存在当前目录
 	print("Done!")
-
+    except:
+        apple_app_package_name='capcut-video-editor'
 
 if __name__ == '__main__':
 	main()
