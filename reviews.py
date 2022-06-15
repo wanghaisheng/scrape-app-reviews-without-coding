@@ -72,6 +72,8 @@ def app_store_scraper(app_name,country=country):
         #https://github.com/cowboy-bebug/app-store-scraper/issues/34
         app_name=unquote(app_name)
         print('url encode app name',app_name)
+        print('url encode app name',app_name.encode("utf-8").decode("latin1"))
+       
         
     app = AppStore(country=country,app_name=app_name)
     app.review(sleep = random.randint(3,6))
