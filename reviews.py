@@ -33,7 +33,10 @@ except:
 try:
     country=os.getenv('country')
 except:
-    country='us'
+    country=os.getenv('apple_app_package_url').strip().replace("https://apps.apple.com/").split('/')[0]
+    if country is None or country =="":
+        country='us'
+
 try:
     lang=os.getenv('lang')
 except:
@@ -57,10 +60,9 @@ def play_store_scraper(package):
 
 applerows = []
 
-def app_store_scraper(app_name,country="us",lang='en'):
+def app_store_scraper(app_name,country=country):
     app = AppStore(country=country,app_name=app_name)
     app.review(sleep = random.randint(3,6))
-#     app.review()
 
     for review in app.reviews:
         data={}
@@ -70,7 +72,7 @@ def app_store_scraper(app_name,country="us",lang='en'):
         
         applerows.append(data)
     df = pd.DataFrame(applerows)
-    df.to_csv("./"+app_name+'-'+lang+'-'+country+'-'+"apple-app-review.csv", index=False)
+    df.to_csv("./"+app_name+'-'+country+'-'+"apple-app-review.csv", index=False)
 def app_reviews(country_code,app_id):
 
     return "https://itunes.apple.com/%s/rss/customerreviews/id=%s/sortBy=mostRecent/json" % (country_code, app_id)    
