@@ -1,5 +1,5 @@
 
-name: cn-apple-appstorereviews
+name: cn-apple-appstorereviews-from-id/name
 on:
   workflow_dispatch:
     inputs:
@@ -30,7 +30,7 @@ jobs:
       - name: Install all necessary packages
         run: pip install  requests openpyxl pandas xlsxwriter
       - name: Run the scraping script
-        run: python cn-apple.py
+        run: python cn-app-id-name.py
         env:
           apple_app_package_url: ${{ github.event.inputs.apple_app_package_url }}          
           appName: ${{ github.event.inputs.apple_app_package_url }}          
