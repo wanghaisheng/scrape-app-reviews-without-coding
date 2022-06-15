@@ -67,8 +67,8 @@ def main():
                 print('not support package,',apple_app_package_url,appName)        
 
             app = appName
-            id = appid
-
+            id = appid.replace('id','')
+	    print('====',app,id)
             # 	SearchAppId(app)
 
             # Workbook init
