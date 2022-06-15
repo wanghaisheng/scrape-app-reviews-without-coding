@@ -6,11 +6,8 @@ from pathlib import Path
 import pandas as pd
 import random
 import os
+from urllib.parse import urlencode, quote_plus
 
-try:
-    from urllib import unquote
-except ImportError:
-    from urllib.parse import unquote
 try:
     google_app_package_url = os.getenv('google_app_package_url').strip()
     if 'https://play.google.com/store/apps/details?id=' in google_app_package_url:
@@ -70,7 +67,7 @@ applerows = []
 def app_store_scraper(app_name,country=country,lang='us'):
     if country=='cn':
         #https://github.com/cowboy-bebug/app-store-scraper/issues/34
-        print('url encode app name',urllib.parse.urlencode(app_name))
+        print('url encode app name',urlencode(app_name))
         print('url encode app name',app_name.encode("utf-8"))
         lang='zh-Hans-CN'
     app = AppStore(country=country,app_name=app_name,lang=lang)
