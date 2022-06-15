@@ -68,7 +68,7 @@ def main():
 
             app = appName
             id = appid.replace('id','')
-	    print('====',app,id)
+	        print('====',app,id)
             # 	SearchAppId(app)
 
             # Workbook init
@@ -88,4 +88,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
