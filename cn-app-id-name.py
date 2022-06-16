@@ -70,11 +70,11 @@ def  main(appName,appid):
         r = get_response(appid, i)
         print(f"第 {i+1} 页评论已获取")
         for item in parse_response(r):
-            write_to_file(cur_id, item)
+            write_to_file(appid, item)
         print(f'第 {i} 页评论已存储')
         if not next_url:
             break
-    print(f'结束爬取 {cur_id}')
+    print(f'结束爬取 {appid}')
 
 
 if __name__ == '__main__':
