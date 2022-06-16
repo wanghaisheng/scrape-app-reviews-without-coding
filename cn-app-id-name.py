@@ -68,7 +68,7 @@ def  main(appName,appid):
     print(f'开始爬取 {appid}')
     for i in range(0, 1000):
         r = get_response(appid, i)
-        print(f"第 {i+1} 页评论已获取")
+        print(f"第 {i+1} 页评论已获取",r)
         for item in parse_response(r):
             write_to_file(appid, item)
         print(f'第 {i} 页评论已存储')
