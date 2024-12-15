@@ -14,6 +14,10 @@ on:
         description: 'country like "us","cn"'
         type: enviroment
         required: False    
+      url_file:
+        description: 'urls file name:urls.txxt'
+        type: enviroment
+        required: False    
 # schedule:
     # - cron: "00 12 * * *"
 jobs:
