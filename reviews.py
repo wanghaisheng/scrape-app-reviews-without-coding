@@ -46,10 +46,25 @@ def app_store_scraper(app_name, country='us', lang='en'):
     df = pd.DataFrame(applerows)
     df.to_csv(f"./{app_name}-{country}-apple-app-review.csv", index=False, encoding='utf-8')
 
+# Function to read URLs from a file
+def read_urls_from_file(url_file):
+    try:
+        with open(url_file, 'r') as file:
+            urls = file.readlines()
+        return [url.strip() for url in urls if url.strip()]
+    except Exception as e:
+        print(f"Error reading URLs from file {url_file}: {e}")
+        return []
+
 # Function to process the URLs and trigger scraping for each
 def app_reviews():
     # Get input URLs from environment variables or hardcoded
     urls = os.getenv('app_urls', '').split(',')
+    url_file = os.getenv('url_file', '')
+
+    if not urls[0] and url_file:
+        urls = read_urls_from_file(url_file)  # If urls not set, read from file
+
     lang = os.getenv('lang', 'en')
     country = os.getenv('country', 'us')
 
