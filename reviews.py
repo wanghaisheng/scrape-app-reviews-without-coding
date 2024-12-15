@@ -18,9 +18,10 @@ def play_store_scraper(package, country='us', lang='en'):
         for x, item in enumerate(results):
             googlerows.append(item)
         
-        # Save the reviews to a CSV file
+        # Save the reviews to a separate CSV file for Google Play
         df = pd.DataFrame(googlerows)
         df.to_csv(f"./{package}-{lang}-{country}-google-app-review.csv", index=False, encoding='utf-8')
+        print(f"Google Play reviews saved for {package}")
     except Exception as e:
         print(f"Error scraping Google Play for {package}: {e}")
         return None
@@ -42,9 +43,10 @@ def app_store_scraper(app_name, country='us', lang='en'):
         }
         applerows.append(data)
 
-    # Save the reviews to a CSV file
+    # Save the reviews to a separate CSV file for App Store
     df = pd.DataFrame(applerows)
     df.to_csv(f"./{app_name}-{country}-apple-app-review.csv", index=False, encoding='utf-8')
+    print(f"App Store reviews saved for {app_name}")
 
 # Function to read URLs from a file
 def read_urls_from_file(url_file):
@@ -77,6 +79,7 @@ def app_reviews():
             play_store_scraper(package_name, country, lang)
 
         elif 'apps.apple.com' in url:
+            # Extract app_name from the Apple App Store URL (the second-to-last part)
             app_name = url.split('/')[-2]
             print(f"Scraping App Store app: {app_name}")
             app_store_scraper(app_name, country, lang)
