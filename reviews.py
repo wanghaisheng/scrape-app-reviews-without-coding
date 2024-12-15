@@ -62,7 +62,7 @@ def read_urls_from_file(url_file):
 def app_reviews():
     # Get input URLs from environment variables or hardcoded
     urls = os.getenv('app_urls', '').split(',')
-    url_file = os.getenv('url_file', '')
+    url_file = os.getenv('url_file', 'urls.txt')
 
     if not urls[0] and url_file:
         urls = read_urls_from_file(url_file)  # If urls not set, read from file
